@@ -9,10 +9,6 @@ import pytest
 
 if sys.platform == 'win32':
     pytestmark = pytest.mark.skip('snippets do not run on win32')
-try:
-    import setuptools
-except ImportError:
-    pytestmark = pytest.mark.skip('the snippets need setuptools at build time')
 
 def create_venv(name):
     tmpdir = udir / name
