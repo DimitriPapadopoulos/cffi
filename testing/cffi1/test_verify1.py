@@ -242,8 +242,6 @@ def test_all_integer_and_float_types():
     for typename in typenames:
         foo = getattr(lib, 'foo_%s' % typename.replace(' ', '_'))
         assert foo(42) == 43
-        if sys.version < '3':
-            assert foo(long(44)) == 45
         assert foo(ffi.cast(typename, 46)) == 47
         pytest.raises(TypeError, foo, ffi.NULL)
         #
@@ -372,11 +370,11 @@ def test_char_type():
 def test_wchar_type():
     ffi = FFI()
     if ffi.sizeof('wchar_t') == 2:
-        uniexample1 = u+'\u1234'
-        uniexample2 = u+'\u1235'
+        uniexample1 = '\u1234'
+        uniexample2 = '\u1235'
     else:
-        uniexample1 = u+'\U00012345'
-        uniexample2 = u+'\U00012346'
+        uniexample1 = '\U00012345'
+        uniexample2 = '\U00012346'
     #
     ffi.cdef("wchar_t foo(wchar_t);")
     lib = ffi.verify("wchar_t foo(wchar_t x) { return x+1; }")
@@ -1465,9 +1463,9 @@ def test_bool():
     assert lib.foo(0) is True
     pytest.raises(OverflowError, lib.foo, 42)
     pytest.raises(TypeError, lib.foo, 0.0)
-    assert int(ffi.cast("_Bool", long(1))) == 1
-    assert int(ffi.cast("_Bool", long(0))) == 0
-    assert int(ffi.cast("_Bool", long(-1))) == 1
+    assert int(ffi.cast("_Bool", 1)) == 1
+    assert int(ffi.cast("_Bool", 0)) == 0
+    assert int(ffi.cast("_Bool", -1)) == 1
     assert int(ffi.cast("_Bool", 10**200)) == 1
     assert int(ffi.cast("_Bool", 10**40000)) == 1
     #
