@@ -287,9 +287,8 @@ class Recompiler:
             self.write_c_source_to_f(f, preamble)
 
     def _rel_readlines(self, filename):
-        g = open(os.path.join(os.path.dirname(__file__), filename), 'r')
-        lines = g.readlines()
-        g.close()
+        with open(os.path.join(os.path.dirname(__file__), filename), 'r') as g:
+            lines = g.readlines()
         return lines
 
     def write_c_source_to_f(self, f, preamble):
