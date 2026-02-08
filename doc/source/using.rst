@@ -391,7 +391,7 @@ pointers, with each of them only valid during the corresponding call.  This is
 important notably for PyPy which uses many optimizations tweaking the data
 underlying a byte string object.  CFFI will not make and free a copy of
 the whole string at *every* call---it usually won't---but you *cannot*
-write code that relies on it: there are cases were that would break.
+write code that relies on it: there are cases where that would break.
 If you need a pointer to remain valid, you need to make one explicitly,
 for example with ``ptr = ffi.new("char[]", x)``.)
 
