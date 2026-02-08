@@ -532,7 +532,7 @@ but it makes the next GC occur earlier, which is often enough.
 
 The same applies if the memory allocations are indirect, e.g. the C
 function allocates some internal data structures.  In that case, call
-``__pypy__.add_memory_pressure(n)`` with an argument ``n`` that is an
+``__pypy__.add_memory_pressure(n)`` with an argument ``n`` that is a
 rough estimation.  Knowing the exact size is not important, and memory
 pressure doesn't have to be manually brought down again after calling
 the freeing function.  If you are writing wrappers for the allocating /

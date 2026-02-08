@@ -308,7 +308,7 @@ with the files ``pi.c`` and ``pi.h``:
       # include <math.h>
 
       /* Returns a very crude approximation of Pi
-         given a int: a number of iteration */
+         given an int: a number of iterations */
       float pi_approx(int n){
 
         double i,x,y,sum=0;
